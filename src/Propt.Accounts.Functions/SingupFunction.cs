@@ -9,7 +9,7 @@ namespace SingupFunction
     public class SingupFunction
     {
         [Function("SingupFunction")]
-        public async Task<HttpResponseData> Run(
+        public HttpResponseData Run(
             [HttpTrigger(AuthorizationLevel.Function, "post", Route = null)] HttpRequestData req,
             FunctionContext context)
         {
