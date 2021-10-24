@@ -10,7 +10,7 @@ terraform {
     resource_group_name  = "propt-tf-test-rg-ukso"
     storage_account_name = "propttftestsaukso"
     container_name       = "terraformstate"
-    key                  = "propt-global.tfstate"
+    key                  = "propt-accounts.tfstate"
   }
 }
 

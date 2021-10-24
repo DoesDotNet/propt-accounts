@@ -1,5 +1,5 @@
 resource "azurerm_app_service_plan" "accounts" {
-  name                = format("%s-asp-ukso", local.storage_name_prefix)
+  name                = format("%s-asp-ukso", local.name_prefix)
   location            = azurerm_resource_group.accounts.location
   resource_group_name = azurerm_resource_group.accounts.name
 
@@ -10,7 +10,7 @@ resource "azurerm_app_service_plan" "accounts" {
 }
 
 resource "azurerm_function_app" "accounts" {
-  name                       = format("%s-fa-ukso", local.storage_name_prefix)
+  name                       = format("%s-fa-ukso", local.name_prefix)
   location                   = azurerm_resource_group.accounts.location
   resource_group_name        = azurerm_resource_group.accounts.name
   app_service_plan_id        = azurerm_app_service_plan.accounts.id
