@@ -83,12 +83,28 @@ jobs:
         run: terraform apply -no-color -auto-approve -input=false tfplan
 
       - name: 'Terraform Output'
-        id: terraform
+        id: outputs
         uses: hashicorp/terraform-github-actions@master
         with:
           tf_actions_version: 'latest'
           tf_actions_subcommand: 'output'
           tf_actions_working_dir: ${{ env.TF_ACTIONS_WORKING_DIR }}
+
+      - name: 'Pull specific outputs'
+        run: |
+          apt-get install jq
+          DBNAME=$(echo ${{ steps.outputs.outputs.tf_actions_output }} | jq -r '.account-function-name')
+          echo $DBNAME
+
+
+
+      # - uses: gliech/create-github-secret-action@v1
+      #   with:
+      #     location: ${{ steps.outputs.outputs.tf_actions_output  }}
+      #     name: NUCLEAR_LAUNCH_CODES
+      #     value: '00000000'
+      #     org_visibility: all
+      #     pa_token: ${{ secrets.PAT_STRATEGIC_AIR_COMMAND }}
 
 
       # - name: Get Publish Profile
